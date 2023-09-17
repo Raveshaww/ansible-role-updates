@@ -2,26 +2,41 @@
 dependency:
   name: galaxy
 driver:
-  name: vagrant
-  provider:
-    name: virtualbox
+  name: docker
 platforms:
-  - name: focal
-    box: ubuntu/focal64
-    memory: 2048
-    cpus: 2
+  # Jeff Geerling's docker containers contain a working systemd setup, so they're nice for Ansible testing
   - name: jammy
-    box: ubuntu/jammy64
-    memory: 2048
-    cpus: 2
-  - name: bookworm
-    box: debian/bookworm64
-    memory: 2048
-    cpus: 2
+    image: "geerlingguy/docker-${MOLECULE_DISTRO:-ubuntu2204}-ansible:latest"
+    command: ""
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    cgroupns_mode: host
+    privileged: true
+    pre_build_image: true
+  - name: focal
+    image: "geerlingguy/docker-${MOLECULE_DISTRO:-ubuntu2004}-ansible:latest"
+    command: ""
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    cgroupns_mode: host
+    privileged: true
+    pre_build_image: true
   - name: bullseye
-    box: debian/bullseye64
-    memory: 2048
-    cpus: 2
+    image: "geerlingguy/docker-${MOLECULE_DISTRO:-debian11}-ansible:latest"
+    command: ""
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    cgroupns_mode: host
+    privileged: true
+    pre_build_image: true
+  - name: bookworm
+    image: "geerlingguy/docker-${MOLECULE_DISTRO:-debian12}-ansible:latest"
+    command: ""
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    cgroupns_mode: host
+    privileged: true
+    pre_build_image: true
 provisioner:
   name: ansible
 verifier:
