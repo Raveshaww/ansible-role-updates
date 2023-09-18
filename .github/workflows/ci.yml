@@ -1,6 +1,6 @@
 ---
 name: CI
-on:
+"on":
   pull_request:
   push:
     branches:
@@ -25,10 +25,10 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: "3.x"
-      
+
       - name: Install lint dependencies
         run: pip3 install yamllint ansible-lint
-      
+
       - name: Lint code.
         run: |
           yamllint .
@@ -48,7 +48,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: "3.x"
-      
+
       - name: Install test dependencies
         run: pip3 install ansible molecule molecule-plugins[docker]
 
