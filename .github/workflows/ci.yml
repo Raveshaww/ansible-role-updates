@@ -19,7 +19,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
         with:
-          path: "raveshaw.updates"
+          path: "raveshaww.updates"
 
       - name: Set up Python3
         uses: actions/setup-python@v4
@@ -53,7 +53,7 @@ jobs:
         run: pip3 install ansible molecule molecule-plugins[docker]
 
       - name: Run Molecule tests
-        run: Molecule test
+        run: molecule test
         env:
           PY_COLORS: "1"
           ANSIBLE_FORCE_COLOR: "1"
