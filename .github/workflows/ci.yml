@@ -7,16 +7,20 @@ on:
       - master
   workflow_dispatch:
 
+defaults:
+  run:
+    working-directory: "raveshaww.updates"
+
 jobs:
   lint:
-    name: lint
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
         uses: actions/checkout@v3
         with:
-          path: "raveshaww.updates"
-      
+          path: "raveshaw.updates"
+
       - name: Set up Python3
         uses: actions/setup-python@v4
         with:
