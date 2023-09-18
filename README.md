@@ -1,6 +1,6 @@
 # Package Updates
 
-A quick role meant to handle updating all APT packages on target hosts to the latest version. This doesn't necessarly need to be a role, but I was getting somewhat tired of simply repeating the same code from playbook to playbook.
+A quick role meant to handle updating all APT and DNF packages on target hosts to the latest version. This doesn't necessarly need to be a role, but I was getting somewhat tired of simply repeating the same code from playbook to playbook.
 
 # Requirements
 

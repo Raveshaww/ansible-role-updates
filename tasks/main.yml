@@ -1,12 +1,22 @@
 ---
 # tasks file for raveshaww.updates
-- name: Run apt updates
+- name: Run APT updates
   ansible.builtin.apt:
     name: "*"
     state: "latest"
     update_cache: true
     cache_valid_time: 3600
+  when: ansible_distribution_file_variety == "Debian"
+  notify: Remove unused APT packages
 
-- name: Remove unused dependencies
-  ansible.builtin.apt:
-    autoremove: true
+- name: Run DNF updates
+  ansible.builtin.dnf:
+    name: "*"
+    state: latest
+    update_cache: true
+  when: ansible_distribution_file_variety == "RedHat"
+  notify: Remove unused APT packages
+
+- name: Print facts
+  ansible.builtin.debug:
+    var: ansible_distribution_file_variety
